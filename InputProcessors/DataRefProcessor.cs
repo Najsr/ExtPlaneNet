@@ -9,7 +9,7 @@ namespace ExtPlaneNet.InputProcessors
 
 		public string Evaluator
 		{
-			get { return "^u(i|f|d|ia|fa|b)\\s([^\\s]+)\\s(.+)"; }
+			get { return @"^u(i|f|d|ia|fa|b)\s([^\s]+)\s(.+)"; }
 		}
 
 		public DataRefProcessor(IDataRefRepository dataRefRepository)

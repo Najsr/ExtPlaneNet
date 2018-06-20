@@ -118,7 +118,7 @@ namespace ExtPlaneNet
 			return DataRefs.Get<T>(dataRef);
 		}
 
-		public void SetDataRef<T>(string dataRef, T value)
+        public void SetDataRef<T>(string dataRef, T value)
 		{
 			if (string.IsNullOrWhiteSpace(dataRef))
 				throw new ArgumentNullException("dataRef");
@@ -128,5 +128,13 @@ namespace ExtPlaneNet
 
 			Commands.Enqueue(new SetDataRefCommand<T>(dataRef, value));
 		}
-	}
+
+	    public void SetExecutingCommand(string dataRef)
+	    {
+	        if (string.IsNullOrWhiteSpace(dataRef))
+	            throw new ArgumentNullException("dataRef");
+
+	        Commands.Enqueue(new SetExecutingCommand(dataRef));
+	    }
+    }
 }
