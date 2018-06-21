@@ -6,7 +6,7 @@ namespace ExtPlaneNet.Commands
 {
     public abstract class Command
     {
-        public readonly string Name;
+        public string Name;
 
         protected Command(string name)
         {
@@ -19,5 +19,12 @@ namespace ExtPlaneNet.Commands
         }
 
         protected abstract string FormatParameters();
+
+        public enum CommandType
+        {
+            Once,
+            Begin,
+            End
+        }
     }
 }

@@ -9,12 +9,13 @@ namespace ExtPlaneNet.Commands
 	{
 		public string DataRef { get; set; }
 
-		public SetExecutingCommand(string dataRef) : base("cmd once")
+		public SetExecutingCommand(string dataRef, CommandType type) : base("cmd ")
 		{
 			if (string.IsNullOrWhiteSpace(dataRef))
 				throw new ArgumentNullException("dataRef");
 
 			DataRef = dataRef;
+            Name += Enum.GetName(typeof(CommandType), type)?.ToLower();
 		}
 
 		protected override string FormatParameters()

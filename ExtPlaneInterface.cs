@@ -129,12 +129,12 @@ namespace ExtPlaneNet
 			Commands.Enqueue(new SetDataRefCommand<T>(dataRef, value));
 		}
 
-	    public void SetExecutingCommand(string dataRef)
+	    public void SetExecutingCommand(string dataRef, Command.CommandType type = Command.CommandType.Once)
 	    {
 	        if (string.IsNullOrWhiteSpace(dataRef))
 	            throw new ArgumentNullException("dataRef");
 
-	        Commands.Enqueue(new SetExecutingCommand(dataRef));
+	        Commands.Enqueue(new SetExecutingCommand(dataRef, type));
 	    }
     }
 }
