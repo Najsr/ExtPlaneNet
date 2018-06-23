@@ -31,7 +31,13 @@ namespace ExtPlaneNet.Commands
 			else
 				value = Value.ToString();
 
-			return string.Format(CultureInfo.InvariantCulture, "{0} {1}", DataRef, value);
-		}
+#if DEBUG
+		    var oldColor = Console.ForegroundColor;
+		    Console.ForegroundColor = ConsoleColor.Magenta;
+		    Console.WriteLine(string.Format(CultureInfo.InvariantCulture, "{0} {1}", DataRef, value));
+		    Console.ForegroundColor = oldColor;
+#endif
+            return string.Format(CultureInfo.InvariantCulture, "{0} {1}", DataRef, value);
+        }
 	}
 }

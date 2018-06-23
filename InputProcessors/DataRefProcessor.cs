@@ -7,17 +7,11 @@ namespace ExtPlaneNet.InputProcessors
 	{
 		protected readonly IDataRefRepository DataRefRepository;
 
-		public string Evaluator
-		{
-			get { return @"^u(i|f|d|ia|fa|b)\s([^\s]+)\s(.+)"; }
-		}
+		public string Evaluator => @"^u(i|f|d|ia|fa|b)\s([^\s]+)\s(.+)";
 
-		public DataRefProcessor(IDataRefRepository dataRefRepository)
+	    public DataRefProcessor(IDataRefRepository dataRefRepository)
 		{
-			if (dataRefRepository == null)
-				throw new ArgumentNullException("dataRefRepository");
-
-			DataRefRepository = dataRefRepository;
+		    DataRefRepository = dataRefRepository ?? throw new ArgumentNullException("dataRefRepository");
 		}
 
 		public void Process(string data)
@@ -36,6 +30,12 @@ namespace ExtPlaneNet.InputProcessors
 			DataRef dataRef = DataRefRepository.Get(name, type);
 
 			dataRef.SetValue(value);
+#if DEBUG
+		    var oldColor = Console.ForegroundColor;
+		    Console.ForegroundColor = ConsoleColor.Yellow;
+		    Console.WriteLine("{0}: {1}", dataRef.Name, value);
+		    Console.ForegroundColor = oldColor;
+#endif
 		}
 	}
 }
